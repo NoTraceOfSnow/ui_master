@@ -2,7 +2,6 @@
 
 ##### 入口类ActivityThread
 
-
 ```java
     //ActivityThread
     public final class ActivityThread {
@@ -282,6 +281,13 @@
         }
     }
 ```
-```java
-   
-```
+
+##### 总结UI的绘制流程
+
+![绘制流程](app/src/main/res/mipmap-xhdpi/view_draw.png)
+
+从ActivityThread的handleLaunchActivity -> ActivityThread的handleResumeActivity -> WindowManagerImpl的addview方法 -> WindowManagerGlobal的addView
+ -> ViewRootImpl的requestLayout -> ViewRootImpl的scheduleTraversals -> ViewRootImpl的doTraversal -> ViewRootImpl的performTraversals
+
+
+下一节[UI绘制详细步骤流程](ViewRead.md)
