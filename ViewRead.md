@@ -290,4 +290,4 @@
  -> ViewRootImpl的requestLayout -> ViewRootImpl的scheduleTraversals -> ViewRootImpl的doTraversal -> ViewRootImpl的performTraversals
 
 
-下一节[UI绘制详细步骤流程](ViewRead.md)
+下一节[UI绘制详细步骤流程](UIRead.md)

@@ -279,7 +279,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
 ```
 #### view的测量-确定view的measureSpec
 
-![measureSpec测量](app\src\main\res\mipmap-xhdpi\measureSpec.png)
+![measureSpec测量](app\src\main\res\mipmap-xhdpi\measure_spec.png)
 
 #### 控件测量过程
 
