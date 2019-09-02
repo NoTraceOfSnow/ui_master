@@ -12,6 +12,6 @@
             android:layout_centerInParent="true"
             android:background="@color/colorAccent"
             app:heightPercent="0.5"
-            app:widthPercent="0.5" />
+            app:widthPercent="0.25" />
 
 </com.study.ui_master.PercentLayout>
