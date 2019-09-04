@@ -1,4 +1,4 @@
-package com.study.ui_master;
+package com.study.ui_master.render;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,6 +18,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.study.ui_master.R;
+
 /**
  * 渲染
  */
@@ -27,14 +29,12 @@ public class GradientLayout extends View {
     Bitmap mBitmap;
 
     public GradientLayout(Context context) {
-        super(context);
-        init(context);
+        this(context, null);
     }
 
 
     public GradientLayout(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+        this(context, attrs, 0);
     }
 
     public GradientLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

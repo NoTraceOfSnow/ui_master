@@ -1,4 +1,4 @@
-package com.study.ui_master;
+package com.study.ui_master.layer_blending;
 
 import android.content.Context;
 import android.graphics.Bitmap;

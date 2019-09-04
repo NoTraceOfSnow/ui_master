@@ -27,13 +27,11 @@ public class ColorFilterView extends View {
     private Bitmap mBitmap;
 
     public ColorFilterView(Context context) {
-        super(context);
-        initView(context);
+        this(context, null);
     }
 
     public ColorFilterView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView(context);
+        this(context, attrs, 0);
     }
 
     public ColorFilterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -80,22 +78,22 @@ public class ColorFilterView extends View {
 //        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.DARKEN);
 //        mPaint.setColorFilter(porterDuffColorFilter);
 //        canvas.drawBitmap(mBitmap, 100, 0, mPaint);
-        //颜色矩阵，矩阵详解图
-//        float[] colorMatrix = {
-//                0.5f, 0, 0, 0, 0,   //red
-//                0, 0.5f, 0, 0, 0,   //green
-//                0, 0, 0.5f, 0, 0,   //blue
-//                0, 0, 0, 1, 0    //alpha
-//        };
-//        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(colorMatrix);
-        ColorMatrix cm = new ColorMatrix();
+        //颜色矩阵，矩阵详解网址 https://www.cnblogs.com/tinytiny/p/3317372.html?tdsourcetag=s_pcqq_aiomsg
+        float[] colorMatrix = {
+                0.8f, 1.6f, 0.2f, 0, -163.9f,//red
+                0.8f, 1.6f, 0.2f, 0, -163.9f,//green
+                0.8f, 1.6f, 0.2f, 0, -163.9f, //blue
+                0, 0, 0, 1.0f, 0   //alpha
+        };
+        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(colorMatrix);
+//        ColorMatrix cm = new ColorMatrix();
         //亮度调节
-        cm.setScale(2, 1, 1, 1);
+//        cm.setScale(2, 1, 1, 1);
         //饱和度调节
-        cm.setSaturation(2);
+//        cm.setSaturation(0);
         //色度调节
-        cm.setRotate(0, 45);
-        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(cm);
+//        cm.setRotate(0, 45);
+//        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(cm);
         mPaint.setColorFilter(mColorFilter);
         canvas.drawBitmap(mBitmap, 0, 0, mPaint);
     }

@@ -1,4 +1,4 @@
-package com.study.ui_master;
+package com.study.ui_master.layer_blending;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,6 +12,8 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.study.ui_master.R;
 
 /**
  * 刮刮卡效果

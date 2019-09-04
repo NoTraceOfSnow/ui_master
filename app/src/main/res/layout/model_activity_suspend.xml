@@ -2,8 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -11,12 +10,11 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                app:layout_collapseMode="pin"
-                app:title="test">
-
-        </androidx.appcompat.widget.Toolbar>
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:title="@string/app_name"
+                app:titleTextColor="#fff" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
@@ -29,21 +27,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        <FrameLayout
-                android:id="@+id/fl_parent"
+        <RelativeLayout
+                android:id="@+id/rl_parent"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/colorPrimary">
+                android:layout_height="40dp"
+                android:background="#f00">
+
+            <ImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true" />
 
             <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/img_avatar"
                     android:gravity="center_vertical"
-                    android:text="你好" />
-        </FrameLayout>
-
-
+                    android:text="test" />
+        </RelativeLayout>
     </FrameLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
