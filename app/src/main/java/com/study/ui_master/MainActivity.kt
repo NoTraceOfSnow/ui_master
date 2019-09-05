@@ -1,15 +1,7 @@
 package com.study.ui_master
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.SurfaceView
-import android.view.Window
-import com.alibaba.android.vlayout.VirtualLayoutAdapter
-import com.study.ui_master.color_filter.ColorFilterView
-import com.study.ui_master.operate_canvas.SaveAndRestoreCanvas
-import com.study.ui_master.operate_canvas.TransformView
-import com.study.ui_master.operate_canvas.split.SplitImageView
 
 class MainActivity : Activity() {
 
@@ -34,6 +26,7 @@ class MainActivity : Activity() {
 //        layoutInflater
 //        SurfaceView
 //        TextInputLayout
-        setContentView(MoveView(this))
+//        setContentView(MoveView(this))
+        setContentView(CustomEditText(this))
     }
 }
