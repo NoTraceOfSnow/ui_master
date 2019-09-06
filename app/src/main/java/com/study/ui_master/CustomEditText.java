@@ -9,29 +9,27 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.text.InputFilter;
+import android.util.AndroidException;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.core.content.ContextCompat;
 
 import com.study.ui_master.R;
+import com.study.ui_master.ui.UIUtils;
 
 /**
  * 自定义密码输入框
  */
 public class CustomEditText extends AppCompatEditText {
     private int textLength;
-    private int borderColor;
-    private float borderWidth;
-    private float borderRadius;
-    private int passwordLength;
-    private int passwordColor;
-    private float passwordWidth;
-    private float passwordRadius;
-    private Paint passwordPaint = new Paint(ANTI_ALIAS_FLAG);
-    private Paint borderPaint = new Paint(ANTI_ALIAS_FLAG);
-    private final int defaultContMargin = 5;
-    private final int defaultSplitLineWidth = 3;
-
+    private Paint passwordPaint = new Paint(ANTI_ALIAS_FLAG);//设置抗锯齿
+    private Paint borderPaint = new Paint(ANTI_ALIAS_FLAG);//设置抗锯齿
+    private int defaultColor = Color.BLACK;
+    private int defaultRadius = 8;
+    private int passwordLength = 6;
+    private int passwordWidth = 10;
 
     public CustomEditText(Context context) {
         this(context, null);
@@ -39,47 +37,40 @@ public class CustomEditText extends AppCompatEditText {
 
     public CustomEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        final Resources res = getResources();
-        final int defaultBorderColor = res.getColor(R.color.colorAccent);
-        final float defaultBorderWidth = 2;
-        final float defaultBorderRadius = 8;
-        final int defaultPasswordLength = 6;
-        final int defaultPasswordColor = res.getColor(R.color.colorPrimary);
-        final float defaultPasswordWidth = 40;
-        final float defaultPasswordRadius = 8;
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PasswordEditText, 0, 0);
-        try {
-            borderColor = a.getColor(R.styleable.PasswordEditText_borderColor, defaultBorderColor);
-            borderWidth = a.getDimension(R.styleable.PasswordEditText_borderWidth, defaultBorderWidth);
-            borderRadius = a.getDimension(R.styleable.PasswordEditText_borderRadius, defaultBorderRadius);
-            passwordLength = a.getInt(R.styleable.PasswordEditText_passwordLength, defaultPasswordLength);
-            passwordColor = a.getColor(R.styleable.PasswordEditText_passwordColor, defaultPasswordColor);
-            passwordWidth = a.getDimension(R.styleable.PasswordEditText_passwordWidth, defaultPasswordWidth);
-            passwordRadius = a.getDimension(R.styleable.PasswordEditText_passwordRadius, defaultPasswordRadius);
-        } finally {
-            a.recycle();
-        }
-        borderPaint.setStrokeWidth(borderWidth);
-        borderPaint.setColor(borderColor);
-        passwordPaint.setStrokeWidth(passwordWidth);
+        init();
+    }
+
+    private void init() {
+        borderPaint.setStrokeWidth(4);
+        borderPaint.setColor(defaultColor);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        passwordPaint.setStrokeWidth(0);
         passwordPaint.setStyle(Paint.Style.FILL);
-        passwordPaint.setColor(passwordColor);
+        passwordPaint.setColor(defaultColor);
+        //去除EditText默认背景色
+        setBackgroundColor(Color.TRANSPARENT);
+        //设置最长6位
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //设置密码栏固定高度
+        setMeasuredDimension(getMeasuredWidth(), 200);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         int width = getWidth();
         int height = getHeight();
+        //绘制最外边矩形
         RectF rect = new RectF(0, 0, width, height);
-        borderPaint.setColor(borderColor);
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, borderPaint);
-        RectF rectIn = new RectF(rect.left + defaultContMargin, rect.top + defaultContMargin,
-                rect.right - defaultContMargin, rect.bottom - defaultContMargin);
-        borderPaint.setColor(Color.WHITE);
-        canvas.drawRoundRect(rectIn, borderRadius, borderRadius, borderPaint);
-        borderPaint.setColor(borderColor);
-        borderPaint.setStrokeWidth(defaultSplitLineWidth);
+        borderPaint.setColor(defaultColor);
+        canvas.drawRoundRect(rect, defaultRadius, defaultRadius, borderPaint);
+        //绘制中间线条
         for (int i = 1; i < passwordLength; i++) {
+            //中间线条x=(总宽度width / 默认密码长度) * i 当前的密码个数
             float x = width * i / passwordLength;
             canvas.drawLine(x, 0, x, height, borderPaint);
         }
@@ -94,74 +85,8 @@ public class CustomEditText extends AppCompatEditText {
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
+        System.out.println(text.toString());
         this.textLength = text.toString().length();
-        invalidate();
-    }
-
-    public int getBorderColor() {
-        return borderColor;
-    }
-
-    public void setBorderColor(int borderColor) {
-        this.borderColor = borderColor;
-        borderPaint.setColor(borderColor);
-        invalidate();
-    }
-
-    public float getBorderWidth() {
-        return borderWidth;
-    }
-
-    public void setBorderWidth(float borderWidth) {
-        this.borderWidth = borderWidth;
-        borderPaint.setStrokeWidth(borderWidth);
-        invalidate();
-    }
-
-    public float getBorderRadius() {
-        return borderRadius;
-    }
-
-    public void setBorderRadius(float borderRadius) {
-        this.borderRadius = borderRadius;
-        invalidate();
-    }
-
-    public int getPasswordLength() {
-        return passwordLength;
-    }
-
-    public void setPasswordLength(int passwordLength) {
-        this.passwordLength = passwordLength;
-        invalidate();
-    }
-
-    public int getPasswordColor() {
-        return passwordColor;
-    }
-
-    public void setPasswordColor(int passwordColor) {
-        this.passwordColor = passwordColor;
-        passwordPaint.setColor(passwordColor);
-        invalidate();
-    }
-
-    public float getPasswordWidth() {
-        return passwordWidth;
-    }
-
-    public void setPasswordWidth(float passwordWidth) {
-        this.passwordWidth = passwordWidth;
-        passwordPaint.setStrokeWidth(passwordWidth);
-        invalidate();
-    }
-
-    public float getPasswordRadius() {
-        return passwordRadius;
-    }
-
-    public void setPasswordRadius(float passwordRadius) {
-        this.passwordRadius = passwordRadius;
         invalidate();
     }
 }

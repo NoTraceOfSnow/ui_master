@@ -2,6 +2,8 @@ package com.study.ui_master
 
 import android.app.Activity
 import android.os.Bundle
+import com.study.ui_master.svg_car.CarItem
+import com.study.ui_master.svg_car.CarSvgView
 
 class MainActivity : Activity() {
 
@@ -27,6 +29,8 @@ class MainActivity : Activity() {
 //        SurfaceView
 //        TextInputLayout
 //        setContentView(MoveView(this))
-        setContentView(CustomEditText(this))
+//        setContentView(CustomEditText(this))
+//        setContentView(MoveScaleView(this))
+        setContentView(CarSvgView(this))
     }
 }
