@@ -56,8 +56,18 @@ public class CustomEditText extends AppCompatEditText {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //设置密码栏固定高度
-        setMeasuredDimension(getMeasuredWidth(), 200);
+        //让view支持wrap_content属性，
+        // 在onMeasure方法中针对AT_MOST模式做专门处理，
+        // 否则wrap_content会和match_parent效果一样
+        System.out.println(MeasureSpec.AT_MOST);
+        System.out.println(MeasureSpec.UNSPECIFIED);
+        System.out.println(MeasureSpec.EXACTLY);
+        System.out.println(MeasureSpec.getMode(heightMeasureSpec));
+        System.out.println(heightMeasureSpec);
+        if (heightMeasureSpec == MeasureSpec.AT_MOST) {
+            //设置密码栏固定高度
+            setMeasuredDimension(getMeasuredWidth(), 200);
+        }
     }
 
     @Override

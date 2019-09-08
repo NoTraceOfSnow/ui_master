@@ -17,7 +17,7 @@ public class ImageStateBarActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.model_activity_statebar);
+        Density.setDensity(UIApplication.getInstance(), this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4
             //设置沉浸式状态栏
@@ -40,6 +40,7 @@ public class ImageStateBarActivity extends Activity {
             getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
 
+        setContentView(R.layout.model_activity_statebar);
     }
 
     private int getStatusBarHeight(Context context) {

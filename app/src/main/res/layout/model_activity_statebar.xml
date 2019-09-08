@@ -5,21 +5,23 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-    <EditText
-            android:layout_width="wrap_content"
+    <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="6"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/taeyeon_one" />
+
     <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/taeyeon_one" />
+
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:visibility="gone">
 
         <FrameLayout
                 android:layout_width="match_parent"

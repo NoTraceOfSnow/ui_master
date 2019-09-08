@@ -10,8 +10,10 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.renderscript.Matrix3f;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -79,21 +81,27 @@ public class ColorFilterView extends View {
 //        mPaint.setColorFilter(porterDuffColorFilter);
 //        canvas.drawBitmap(mBitmap, 100, 0, mPaint);
         //颜色矩阵，矩阵详解网址 https://www.cnblogs.com/tinytiny/p/3317372.html?tdsourcetag=s_pcqq_aiomsg
-        float[] colorMatrix = {
-                0.8f, 1.6f, 0.2f, 0, -163.9f,//red
-                0.8f, 1.6f, 0.2f, 0, -163.9f,//green
-                0.8f, 1.6f, 0.2f, 0, -163.9f, //blue
-                0, 0, 0, 1.0f, 0   //alpha
-        };
-        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(colorMatrix);
-//        ColorMatrix cm = new ColorMatrix();
+//        float[] colorMatrix = {
+//                0.8f, 1.6f, 0.2f, 0, -163.9f,//red
+//                0.8f, 1.6f, 0.2f, 0, -163.9f,//green
+//                0.8f, 1.6f, 0.2f, 0, -163.9f, //blue
+//                0, 0, 0, 1.0f, 0   //alpha
+//        };
+//        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(colorMatrix);
+        ColorMatrix cm = new ColorMatrix();
+
+//        Matrix3f matrix3f = new Matrix3f(new float[]{
+//                0.9f, 0.0f, 0.0f,
+//                0.0f, 0.9f, 0.0f,
+//                0.0f, 0.0f, 0.9f,
+//        });
         //亮度调节
 //        cm.setScale(2, 1, 1, 1);
         //饱和度调节
-//        cm.setSaturation(0);
+        cm.setSaturation(0);
         //色度调节
 //        cm.setRotate(0, 45);
-//        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(cm);
+        ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(cm);
         mPaint.setColorFilter(mColorFilter);
         canvas.drawBitmap(mBitmap, 0, 0, mPaint);
     }
