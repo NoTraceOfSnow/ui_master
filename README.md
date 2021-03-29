@@ -1,5 +1,3 @@
-# 网易课堂第一节高级UI
-
 #### 分析setContentView(R.layout.XXXX)加载过程
 
 ##### view是如何添加到屏幕上的？
